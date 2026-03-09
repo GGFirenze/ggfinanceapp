@@ -371,14 +371,14 @@
   <nav class="nav">
     <a href="index.html" class="nav-logo">pleo<span>.</span></a>
     <div class="nav-links">
-      <a href="features.html">Products</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="features.html">Solutions</a>
-      <a href="#">Resources</a>
+      <a href="features.html" onclick="window.amplitude.track('Nav Menu Clicked', {button_name: 'Products'})">Products</a>
+      <a href="pricing.html" onclick="window.amplitude.track('Nav Menu Clicked', {button_name: 'Pricing'})">Pricing</a>
+      <a href="features.html" onclick="window.amplitude.track('Nav Menu Clicked', {button_name: 'Solutions'})">Solutions</a>
+      <a href="#" onclick="window.amplitude.track('Nav Menu Clicked', {button_name: 'Resources'})">Resources</a>
     </div>
     <div class="nav-actions">
-      <button class="btn btn-ghost" onclick="openIdentifyModal()">Log in</button>
-      <a href="pricing.html" class="btn btn-primary">Get started</a>
+      <button class="btn btn-ghost" onclick="window.amplitude.track('Nav Menu Clicked', {button_name: 'Log in'}); openIdentifyModal()">Log in</button>
+      <a href="pricing.html" class="btn btn-primary" onclick="window.amplitude.track('Nav Menu Clicked', {button_name: 'Get started'})">Get started</a>
     </div>
   </nav>
 
