@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smarter spending for your business - Pleo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Amplitude Browser SDK + Session Replay -->
+  <script src="https://cdn.amplitude.com/script/6a02da83cc930a6db40f27fe5731a42e.js"></script>
+  <script>
+    window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+    window.amplitude.init('6a02da83cc930a6db40f27fe5731a42e', {
+      fetchRemoteConfig: true,
+      autocapture: {
+        pageViews: true,
+        attribution: true,
+        sessions: true,
+        formInteractions: false,
+        fileDownloads: false,
+        elementInteractions: false,
+        frustrationInteractions: true,
+      }
+    });
+  </script>
+
+  <!-- Freshdesk Chat Widget -->
+  <script>
+    function initFreshdesk() {
+      window.fdWidget.init({
+        token: "01KKA206PWCVJZWKB5JKCQ21E5",
+        host: "https://amplitude.freshdesk.com",
+        widgetId: "01KKA2084G487APJ71V17JT6F3"
+      });
+    }
+    function initialize(i,t){var e;i.getElementById(t)?initFreshdesk():((e=i.createElement("script")).id=t,e.async=!0,e.src="https://amplitude.freshdesk.com/webchat/js/widget.js",e.onload=initFreshdesk,i.head.appendChild(e))}function initiateCall(){initialize(document,"Freshdesk-js-sdk")}window.addEventListener?window.addEventListener("load",initiateCall,!1):window.attachEvent("load",initiateCall,!1);
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pleo-dark: #0C2B32;
+      --pleo-teal: #0E6D5E;
+      --pleo-mint: #D4F5E9;
+      --pleo-light-mint: #EEFAF4;
+      --pleo-cream: #FDF8F4;
+      --pleo-pink: #F8D3D0;
+      --pleo-light-pink: #FDF0EF;
+      --pleo-yellow: #F5E6A3;
+      --pleo-white: #FFFFFF;
+      --pleo-gray: #6B7280;
+      --pleo-light-gray: #F3F4F6;
+      --pleo-border: #E5E7EB;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-family); color: var(--pleo-dark); background: var(--pleo-white); line-height: 1.6; }
+
+    /* ---- NAV ---- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--pleo-border);
+      padding: 0 40px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 28px; font-weight: 700; color: var(--pleo-dark);
+      text-decoration: none; letter-spacing: -1px;
+    }
+    .nav-logo span { color: var(--pleo-teal); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      text-decoration: none; color: var(--pleo-dark); font-size: 15px;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--pleo-teal); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 10px 24px; border-radius: 8px; font-size: 15px;
+      font-weight: 600; text-decoration: none; transition: all 0.25s;
+      cursor: pointer; border: none; font-family: var(--font-family);
+    }
+    .btn-ghost { background: transparent; color: var(--pleo-dark); }
+    .btn-ghost:hover { background: var(--pleo-light-gray); }
+    .btn-primary { background: var(--pleo-dark); color: var(--pleo-white); }
+    .btn-primary:hover { background: #163E47; transform: translateY(-1px); }
+    .btn-teal { background: var(--pleo-teal); color: var(--pleo-white); }
+    .btn-teal:hover { background: #0A5A4D; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--pleo-dark);
+      border: 2px solid var(--pleo-dark);
+    }
+    .btn-outline:hover { background: var(--pleo-dark); color: var(--pleo-white); }
+    .btn-large { padding: 16px 36px; font-size: 17px; border-radius: 10px; }
+
+    /* ---- HERO ---- */
+    .hero {
+      padding: 140px 40px 80px; text-align: center;
+      background: linear-gradient(180deg, var(--pleo-cream) 0%, var(--pleo-white) 100%);
+    }
+    .hero h1 {
+      font-size: clamp(40px, 5.5vw, 72px); font-weight: 700;
+      line-height: 1.08; letter-spacing: -2px; max-width: 800px;
+      margin: 0 auto 24px;
+    }
+    .hero p {
+      font-size: 19px; color: var(--pleo-gray); max-width: 560px;
+      margin: 0 auto 40px; line-height: 1.7;
+    }
+    .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero-badges {
+      display: flex; gap: 28px; justify-content: center;
+      margin-top: 40px; flex-wrap: wrap;
+    }
+    .hero-badges span {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--pleo-gray);
+    }
+    .hero-badges span::before {
+      content: '✓'; display: inline-flex; align-items: center;
+      justify-content: center; width: 20px; height: 20px;
+      background: var(--pleo-mint); color: var(--pleo-teal);
+      border-radius: 50%; font-size: 11px; font-weight: 700;
+    }
+
+    /* ---- TRUST BAR ---- */
+    .trust-bar {
+      padding: 48px 40px; text-align: center;
+      border-bottom: 1px solid var(--pleo-border);
+    }
+    .trust-bar p { font-size: 14px; color: var(--pleo-gray); margin-bottom: 28px; font-weight: 500; }
+    .trust-logos {
+      display: flex; align-items: center; justify-content: center;
+      gap: 48px; flex-wrap: wrap; opacity: 0.45;
+    }
+    .trust-logos span {
+      font-size: 18px; font-weight: 700; letter-spacing: -0.5px;
+      color: var(--pleo-dark);
+    }
+
+    /* ---- SECTION UTILITIES ---- */
+    .section { padding: 100px 40px; }
+    .section-header { text-align: center; max-width: 680px; margin: 0 auto 60px; }
+    .section-header h2 {
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 700;
+      line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px;
+    }
+    .section-header p { font-size: 17px; color: var(--pleo-gray); line-height: 1.7; }
+
+    /* ---- FEATURES TABS ---- */
+    .features { background: var(--pleo-light-mint); }
+    .tab-nav {
+      display: flex; gap: 8px; justify-content: center;
+      margin-bottom: 48px; flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 10px 22px; border-radius: 100px; border: 1px solid var(--pleo-border);
+      background: var(--pleo-white); font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all 0.25s; font-family: var(--font-family);
+      color: var(--pleo-dark);
+    }
+    .tab-btn:hover { border-color: var(--pleo-teal); color: var(--pleo-teal); }
+    .tab-btn.active {
+      background: var(--pleo-dark); color: var(--pleo-white);
+      border-color: var(--pleo-dark);
+    }
+    .tab-content {
+      display: none; max-width: 1000px; margin: 0 auto;
+      background: var(--pleo-white); border-radius: 20px;
+      padding: 48px; box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .tab-content h3 { font-size: 28px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .tab-content p { font-size: 16px; color: var(--pleo-gray); line-height: 1.7; margin-bottom: 20px; }
+    .tab-content ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .tab-content ul li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 500;
+    }
+    .tab-content ul li::before {
+      content: '→'; color: var(--pleo-teal); font-weight: 700;
+    }
+    .feature-visual {
+      background: linear-gradient(135deg, var(--pleo-mint) 0%, var(--pleo-light-mint) 100%);
+      border-radius: 16px; height: 300px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px;
+    }
+
+    /* ---- INTEGRATIONS ---- */
+    .integrations { background: var(--pleo-white); }
+    .integration-grid {
+      display: flex; gap: 20px; justify-content: center;
+      flex-wrap: wrap; max-width: 800px; margin: 0 auto;
+    }
+    .integration-card {
+      width: 140px; height: 80px; background: var(--pleo-white);
+      border: 1px solid var(--pleo-border); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px; color: var(--pleo-dark);
+      transition: all 0.25s; cursor: default;
+    }
+    .integration-card:hover {
+      border-color: var(--pleo-teal); transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    /* ---- TESTIMONIALS ---- */
+    .testimonials { background: var(--pleo-cream); }
+    .testimonial-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px; max-width: 1100px; margin: 0 auto;
+    }
+    .testimonial-card {
+      background: var(--pleo-white); border-radius: 16px;
+      padding: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .testimonial-stars { color: #F59E0B; font-size: 16px; margin-bottom: 16px; }
+    .testimonial-card blockquote {
+      font-size: 16px; line-height: 1.7; color: var(--pleo-dark);
+      margin-bottom: 20px; font-style: italic;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--pleo-mint); display: flex; align-items: center;
+      justify-content: center; font-weight: 700; font-size: 14px;
+      color: var(--pleo-teal);
+    }
+    .testimonial-name { font-weight: 600; font-size: 14px; }
+    .testimonial-role { font-size: 13px; color: var(--pleo-gray); }
+
+    /* ---- PLANS ---- */
+    .plans { background: var(--pleo-white); }
+    .plan-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px; max-width: 1000px; margin: 0 auto;
+    }
+    .plan-card {
+      border: 2px solid var(--pleo-border); border-radius: 20px;
+      padding: 36px; transition: all 0.3s; position: relative;
+    }
+    .plan-card:hover { border-color: var(--pleo-teal); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+    .plan-card.popular { border-color: var(--pleo-teal); }
+    .plan-card.popular::after {
+      content: 'Most popular'; position: absolute; top: -14px; left: 50%;
+      transform: translateX(-50%); background: var(--pleo-teal);
+      color: white; padding: 4px 16px; border-radius: 100px;
+      font-size: 12px; font-weight: 700;
+    }
+    .plan-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--pleo-teal); margin-bottom: 8px; }
+    .plan-card h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+    .plan-card .price { font-size: 36px; font-weight: 700; margin-bottom: 4px; }
+    .plan-card .price span { font-size: 15px; font-weight: 400; color: var(--pleo-gray); }
+    .plan-card .price-note { font-size: 13px; color: var(--pleo-gray); margin-bottom: 24px; }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .plan-features li { font-size: 14px; display: flex; align-items: center; gap: 8px; }
+    .plan-features li::before { content: '✓'; color: var(--pleo-teal); font-weight: 700; font-size: 13px; }
+    .plan-card .btn { width: 100%; }
+
+    /* ---- RATINGS ---- */
+    .ratings {
+      background: var(--pleo-dark); color: var(--pleo-white);
+      text-align: center;
+    }
+    .ratings .section-header h2 { color: var(--pleo-white); }
+    .ratings .section-header p { color: rgba(255,255,255,0.6); }
+    .rating-grid {
+      display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+    }
+    .rating-card {
+      background: rgba(255,255,255,0.08); border-radius: 16px;
+      padding: 28px 36px; min-width: 180px;
+    }
+    .rating-source { font-size: 14px; font-weight: 600; margin-bottom: 8px; opacity: 0.7; }
+    .rating-score { font-size: 32px; font-weight: 700; margin-bottom: 4px; }
+    .rating-stars { color: #F59E0B; font-size: 14px; }
+
+    /* ---- CTA ---- */
+    .cta-section {
+      padding: 100px 40px; text-align: center;
+      background: linear-gradient(180deg, var(--pleo-light-mint) 0%, var(--pleo-white) 100%);
+    }
+    .cta-section h2 {
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 700;
+      letter-spacing: -1px; margin-bottom: 16px;
+    }
+    .cta-section p { font-size: 17px; color: var(--pleo-gray); margin-bottom: 32px; }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      background: var(--pleo-dark); color: rgba(255,255,255,0.7);
+      padding: 64px 40px 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr repeat(4, 1fr);
+      gap: 40px; max-width: 1200px; margin: 0 auto 48px;
+    }
+    .footer-brand .nav-logo { display: inline-block; margin-bottom: 16px; color: var(--pleo-white); }
+    .footer-brand p { font-size: 14px; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { color: var(--pleo-white); font-size: 14px; font-weight: 700; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--pleo-white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px; text-align: center; font-size: 13px;
+    }
+
+    /* ---- IDENTIFY MODAL ---- */
+    .identify-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+    }
+    .identify-modal-overlay.show { display: flex; }
+    .identify-modal {
+      background: var(--pleo-white); border-radius: 20px;
+      padding: 40px; max-width: 440px; width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .identify-modal h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .identify-modal p { font-size: 14px; color: var(--pleo-gray); margin-bottom: 24px; }
+    .identify-modal label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .identify-modal input {
+      width: 100%; padding: 12px 16px; border: 2px solid var(--pleo-border);
+      border-radius: 10px; font-size: 15px; font-family: var(--font-family);
+      transition: border-color 0.2s; outline: none; margin-bottom: 16px;
+    }
+    .identify-modal input:focus { border-color: var(--pleo-teal); }
+    .identify-modal .btn { width: 100%; margin-bottom: 8px; }
+    .identify-skip { text-align: center; }
+    .identify-skip button {
+      background: none; border: none; color: var(--pleo-gray);
+      cursor: pointer; font-size: 14px; font-family: var(--font-family);
+    }
+    .identify-skip button:hover { color: var(--pleo-dark); }
+    .identify-status {
+      position: fixed; bottom: 20px; left: 20px; z-index: 9998;
+      background: var(--pleo-dark); color: var(--pleo-white);
+      padding: 10px 18px; border-radius: 10px; font-size: 13px;
+      font-weight: 500; display: none; align-items: center; gap: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .identify-status.show { display: flex; }
+    .identify-status button {
+      background: rgba(255,255,255,0.15); border: none; color: white;
+      padding: 4px 12px; border-radius: 6px; font-size: 12px;
+      cursor: pointer; font-family: var(--font-family);
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero, .section, .cta-section { padding-left: 20px; padding-right: 20px; }
+      .tab-content.active { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">pleo<span>.</span></a>
+    <div class="nav-links">
+      <a href="features.html">Products</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="features.html">Solutions</a>
+      <a href="#">Resources</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-ghost" onclick="openIdentifyModal()">Log in</button>
+      <a href="pricing.html" class="btn btn-primary">Get started</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Smart spend management you can trust</h1>
+    <p>Automate your spend and take full control of your finances with a tool employees will love, no matter the size of your business.</p>
+    <div class="hero-cta">
+      <a href="pricing.html" class="btn btn-primary btn-large">Get started</a>
+      <a href="features.html" class="btn btn-outline btn-large">See how it works</a>
+    </div>
+    <div class="hero-badges">
+      <span>Free 21 day trial</span>
+      <span>Instant virtual cards</span>
+      <span>Start spending now</span>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <section class="trust-bar">
+    <p>Trusted by 40,000+ companies across Europe</p>
+    <div class="trust-logos">
+      <span>SohoHouse</span>
+      <span>Blinkist</span>
+      <span>HelloFresh</span>
+      <span>Lyst</span>
+      <span>Unity</span>
+      <span>TheOceanCleanup</span>
+      <span>TradeRepublic</span>
+      <span>TooGoodToGo</span>
+    </div>
+  </section>
+
+  <!-- Features Tabs -->
+  <section class="section features" id="features">
+    <div class="section-header">
+      <h2>All your spend in one place</h2>
+    </div>
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="cards">Business cards</button>
+      <button class="tab-btn" data-tab="expenses">Expense management</button>
+      <button class="tab-btn" data-tab="payable">Accounts payable</button>
+      <button class="tab-btn" data-tab="reimburse">Reimbursements</button>
+    </div>
+    <div class="tab-content active" id="tab-cards">
+      <div>
+        <h3>Smart company cards</h3>
+        <p>Give your team the power to buy what they need with built-in spending policies and real-time visibility.</p>
+        <ul>
+          <li>Issue virtual or physical cards, instantly</li>
+          <li>Clear spend limitations built-in</li>
+          <li>Vendor cards for recurring payments</li>
+          <li>Manage cards in a few clicks</li>
+        </ul>
+        <a href="features.html" class="btn btn-teal" style="margin-top: 16px">Learn more</a>
+      </div>
+      <div class="feature-visual">💳</div>
+    </div>
+    <div class="tab-content" id="tab-expenses">
+      <div>
+        <h3>Effortless expense management</h3>
+        <p>Snap receipts, auto-match transactions, and close the books faster than ever before.</p>
+        <ul>
+          <li>Snap &amp; submit receipts instantly</li>
+          <li>Auto-matching with transactions</li>
+          <li>Real-time expense tracking</li>
+          <li>Custom approval workflows</li>
+        </ul>
+        <a href="features.html" class="btn btn-teal" style="margin-top: 16px">Learn more</a>
+      </div>
+      <div class="feature-visual">🧾</div>
+    </div>
+    <div class="tab-content" id="tab-payable">
+      <div>
+        <h3>Accounts payable, simplified</h3>
+        <p>Manage invoices, approvals, and payments in one seamless workflow.</p>
+        <ul>
+          <li>Centralised invoice management</li>
+          <li>Automated approval flows</li>
+          <li>Scheduled and batch payments</li>
+          <li>Full audit trail</li>
+        </ul>
+        <a href="features.html" class="btn btn-teal" style="margin-top: 16px">Learn more</a>
+      </div>
+      <div class="feature-visual">📄</div>
+    </div>
+    <div class="tab-content" id="tab-reimburse">
+      <div>
+        <h3>Quick reimbursements</h3>
+        <p>Reimburse out-of-pocket expenses faster with a streamlined, employee-friendly flow.</p>
+        <ul>
+          <li>Simple expense submissions</li>
+          <li>Fast approval and payout</li>
+          <li>Multi-currency support</li>
+          <li>Direct bank transfers</li>
+        </ul>
+        <a href="features.html" class="btn btn-teal" style="margin-top: 16px">Learn more</a>
+      </div>
+      <div class="feature-visual">💸</div>
+    </div>
+  </section>
+
+  <!-- Integrations -->
+  <section class="section integrations">
+    <div class="section-header">
+      <h2>Fits your business in all the right places</h2>
+      <p>Simplify your workflow by connecting the tools you already use.</p>
+    </div>
+    <div class="integration-grid">
+      <div class="integration-card">Xero</div>
+      <div class="integration-card">Sage</div>
+      <div class="integration-card">NetSuite</div>
+      <div class="integration-card">Dynamics 365</div>
+      <div class="integration-card">QuickBooks</div>
+      <div class="integration-card">Twinfield</div>
+      <div class="integration-card">Odoo</div>
+      <div class="integration-card">Datev</div>
+      <div class="integration-card">Exact Online</div>
+      <div class="integration-card">Fortnox</div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section testimonials">
+    <div class="section-header">
+      <h2>Don't just take our word for it</h2>
+      <p>See how we've helped transform the way our customers manage their business spending.</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"Pleo has completely transformed how our team handles expenses. No more chasing receipts or filling out spreadsheets. It just works."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SH</div>
+          <div>
+            <div class="testimonial-name">Sarah Henriksen</div>
+            <div class="testimonial-role">CFO, TechStart ApS</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"We saved 15 hours per month on expense management. The real-time visibility into spending is a game changer for our finance team."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MK</div>
+          <div>
+            <div class="testimonial-name">Marcus Klein</div>
+            <div class="testimonial-role">Head of Finance, Greenwave GmbH</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <blockquote>"Setting up Pleo took minutes. Our employees love the freedom, and we love the control. Best decision we made this year."</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">EL</div>
+          <div>
+            <div class="testimonial-name">Elena Larsson</div>
+            <div class="testimonial-role">Operations Lead, Nordic Digital AB</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plans -->
+  <section class="section plans" id="plans">
+    <div class="section-header">
+      <h2>A solution that scales with you</h2>
+      <p>Choose the plan that fits your business today and grows with you tomorrow.</p>
+    </div>
+    <div class="plan-grid">
+      <div class="plan-card">
+        <div class="plan-label">Starter</div>
+        <h3>Startups</h3>
+        <div class="price">Free <span>for small teams</span></div>
+        <div class="price-note">Spending done right, from day one.</div>
+        <ul class="plan-features">
+          <li>Up to 3 users</li>
+          <li>Virtual cards</li>
+          <li>Receipt capture</li>
+          <li>Basic analytics</li>
+          <li>Email support</li>
+        </ul>
+        <a href="#" class="btn btn-outline" onclick="openIdentifyModal(); return false;">Get started free</a>
+      </div>
+      <div class="plan-card popular">
+        <div class="plan-label">Essential</div>
+        <h3>Mid-size</h3>
+        <div class="price">€49 <span>/mo per user</span></div>
+        <div class="price-note">Consolidate data, close books faster.</div>
+        <ul class="plan-features">
+          <li>Unlimited users</li>
+          <li>Physical + virtual cards</li>
+          <li>Custom approval flows</li>
+          <li>Accounting integrations</li>
+          <li>Priority support</li>
+          <li>Multi-entity</li>
+        </ul>
+        <a href="#" class="btn btn-primary" onclick="openIdentifyModal(); return false;">Start free trial</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-label">Advanced</div>
+        <h3>Enterprise</h3>
+        <div class="price">Custom</div>
+        <div class="price-note">Stay on top of spend at scale.</div>
+        <ul class="plan-features">
+          <li>Everything in Essential</li>
+          <li>Dedicated account manager</li>
+          <li>SSO &amp; advanced security</li>
+          <li>Custom integrations</li>
+          <li>SLA guarantee</li>
+          <li>Global support</li>
+        </ul>
+        <a href="#" class="btn btn-outline" onclick="openIdentifyModal(); return false;">Contact sales</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ratings -->
+  <section class="section ratings">
+    <div class="section-header">
+      <h2>Rated best-in-class</h2>
+    </div>
+    <div class="rating-grid">
+      <div class="rating-card">
+        <div class="rating-source">Capterra</div>
+        <div class="rating-score">4.9</div>
+        <div class="rating-stars">★★★★★</div>
+      </div>
+      <div class="rating-card">
+        <div class="rating-source">Trustpilot</div>
+        <div class="rating-score">4.5</div>
+        <div class="rating-stars">★★★★★</div>
+      </div>
+      <div class="rating-card">
+        <div class="rating-source">G2</div>
+        <div class="rating-score">4.8</div>
+        <div class="rating-stars">★★★★★</div>
+      </div>
+      <div class="rating-card">
+        <div class="rating-source">Xero Marketplace</div>
+        <div class="rating-score">5.0</div>
+        <div class="rating-stars">★★★★★</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Start a new era of spend management today</h2>
+    <p>Get started for free — no credit card required.</p>
+    <a href="#" class="btn btn-primary btn-large" onclick="openIdentifyModal(); return false;">Get started for free</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">pleo<span>.</span></a>
+        <p>Smart spend management for businesses of every size across Europe.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="features.html">Overview</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="#">Integrations</a></li>
+          <li><a href="#">Status</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Help centre</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Webinars</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Terms of service</a></li>
+          <li><a href="#">GDPR</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      Pleo Technologies A/S — Demo site for Amplitude AI Feedback testing. Not affiliated with Pleo.
+    </div>
+  </footer>
+
+  <!-- User Identify Modal (for Amplitude AI Feedback user mapping) -->
+  <div class="identify-modal-overlay" id="identifyModal">
+    <div class="identify-modal">
+      <h3>Welcome to Pleo</h3>
+      <p>Sign in to get started. This identifies you for a personalized experience.</p>
+      <label for="identifyEmail">Email address</label>
+      <input type="email" id="identifyEmail" placeholder="you@company.com">
+      <label for="identifyName">Full name (optional)</label>
+      <input type="text" id="identifyName" placeholder="Jane Smith">
+      <button class="btn btn-primary" onclick="identifyUser()">Continue</button>
+      <div class="identify-skip">
+        <button onclick="closeIdentifyModal()">Skip for now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Identified User Status Badge -->
+  <div class="identify-status" id="identifyStatus">
+    <span id="identifyStatusText"></span>
+    <button onclick="openIdentifyModal()">Change</button>
+  </div>
+
+  <script>
+    // Tab navigation
+    document.querySelectorAll('.tab-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Amplitude User Identification for AI Feedback user mapping
+    function openIdentifyModal() {
+      document.getElementById('identifyModal').classList.add('show');
+    }
+    function closeIdentifyModal() {
+      document.getElementById('identifyModal').classList.remove('show');
+    }
+    function identifyUser() {
+      var email = document.getElementById('identifyEmail').value.trim();
+      var name = document.getElementById('identifyName').value.trim();
+      if (!email) { document.getElementById('identifyEmail').focus(); return; }
+
+      // Set user ID and properties in Amplitude for AI Feedback user mapping
+      window.amplitude.setUserId(email);
+      var identifyObj = new window.amplitude.Identify();
+      identifyObj.set('email', email);
+      if (name) identifyObj.set('name', name);
+      window.amplitude.identify(identifyObj);
+
+      // Track a custom sign-in event
+      window.amplitude.track('User Signed In', { email: email, name: name || undefined });
+
+      closeIdentifyModal();
+      var statusEl = document.getElementById('identifyStatus');
+      document.getElementById('identifyStatusText').textContent = 'Identified: ' + email;
+      statusEl.classList.add('show');
+
+      // Persist for cross-page identification
+      try { localStorage.setItem('pleo_demo_user', JSON.stringify({ email: email, name: name })); } catch(e) {}
+    }
+
+    // Restore identification on page load
+    (function() {
+      try {
+        var stored = JSON.parse(localStorage.getItem('pleo_demo_user'));
+        if (stored && stored.email) {
+          window.amplitude.setUserId(stored.email);
+          var identifyObj = new window.amplitude.Identify();
+          identifyObj.set('email', stored.email);
+          if (stored.name) identifyObj.set('name', stored.name);
+          window.amplitude.identify(identifyObj);
+          document.getElementById('identifyStatusText').textContent = 'Identified: ' + stored.email;
+          document.getElementById('identifyStatus').classList.add('show');
+        }
+      } catch(e) {}
+    })();
+
+    // Close modal on overlay click
+    document.getElementById('identifyModal').addEventListener('click', function(e) {
+      if (e.target === this) closeIdentifyModal();
+    });
+  </script>
+
+</body>
+</html>

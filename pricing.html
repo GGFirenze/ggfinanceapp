@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing - Pleo | Smart Spend Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Amplitude Browser SDK + Session Replay -->
+  <script src="https://cdn.amplitude.com/script/6a02da83cc930a6db40f27fe5731a42e.js"></script>
+  <script>
+    window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+    window.amplitude.init('6a02da83cc930a6db40f27fe5731a42e', {
+      fetchRemoteConfig: true,
+      autocapture: {
+        pageViews: true,
+        attribution: true,
+        sessions: true,
+        formInteractions: false,
+        fileDownloads: false,
+        elementInteractions: false,
+        frustrationInteractions: true,
+      }
+    });
+  </script>
+
+  <!-- Freshdesk Chat Widget -->
+  <script>
+    function initFreshdesk() {
+      window.fdWidget.init({
+        token: "01KKA206PWCVJZWKB5JKCQ21E5",
+        host: "https://amplitude.freshdesk.com",
+        widgetId: "01KKA2084G487APJ71V17JT6F3"
+      });
+    }
+    function initialize(i,t){var e;i.getElementById(t)?initFreshdesk():((e=i.createElement("script")).id=t,e.async=!0,e.src="https://amplitude.freshdesk.com/webchat/js/widget.js",e.onload=initFreshdesk,i.head.appendChild(e))}function initiateCall(){initialize(document,"Freshdesk-js-sdk")}window.addEventListener?window.addEventListener("load",initiateCall,!1):window.attachEvent("load",initiateCall,!1);
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pleo-dark: #0C2B32;
+      --pleo-teal: #0E6D5E;
+      --pleo-mint: #D4F5E9;
+      --pleo-light-mint: #EEFAF4;
+      --pleo-cream: #FDF8F4;
+      --pleo-white: #FFFFFF;
+      --pleo-gray: #6B7280;
+      --pleo-light-gray: #F3F4F6;
+      --pleo-border: #E5E7EB;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-family); color: var(--pleo-dark); background: var(--pleo-white); line-height: 1.6; }
+
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--pleo-border);
+      padding: 0 40px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 28px; font-weight: 700; color: var(--pleo-dark); text-decoration: none; letter-spacing: -1px; }
+    .nav-logo span { color: var(--pleo-teal); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { text-decoration: none; color: var(--pleo-dark); font-size: 15px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--pleo-teal); }
+    .nav-links a.active { color: var(--pleo-teal); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 10px 24px; border-radius: 8px; font-size: 15px;
+      font-weight: 600; text-decoration: none; transition: all 0.25s;
+      cursor: pointer; border: none; font-family: var(--font-family);
+    }
+    .btn-ghost { background: transparent; color: var(--pleo-dark); }
+    .btn-ghost:hover { background: var(--pleo-light-gray); }
+    .btn-primary { background: var(--pleo-dark); color: var(--pleo-white); }
+    .btn-primary:hover { background: #163E47; transform: translateY(-1px); }
+    .btn-teal { background: var(--pleo-teal); color: var(--pleo-white); }
+    .btn-teal:hover { background: #0A5A4D; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--pleo-dark); border: 2px solid var(--pleo-dark); }
+    .btn-outline:hover { background: var(--pleo-dark); color: var(--pleo-white); }
+    .btn-large { padding: 16px 36px; font-size: 17px; border-radius: 10px; }
+
+    .page-hero {
+      padding: 140px 40px 60px; text-align: center;
+      background: linear-gradient(180deg, var(--pleo-cream) 0%, var(--pleo-white) 100%);
+    }
+    .page-hero h1 {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 700;
+      line-height: 1.12; letter-spacing: -1.5px; max-width: 680px;
+      margin: 0 auto 20px;
+    }
+    .page-hero p { font-size: 18px; color: var(--pleo-gray); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    /* Toggle */
+    .billing-toggle {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin: 40px 0 0;
+    }
+    .billing-toggle span { font-size: 15px; font-weight: 500; color: var(--pleo-gray); }
+    .billing-toggle span.active { color: var(--pleo-dark); font-weight: 700; }
+    .toggle-switch {
+      width: 52px; height: 28px; background: var(--pleo-border);
+      border-radius: 100px; cursor: pointer; position: relative;
+      transition: background 0.3s;
+    }
+    .toggle-switch.active { background: var(--pleo-teal); }
+    .toggle-switch::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 22px; height: 22px; background: white;
+      border-radius: 50%; transition: transform 0.3s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+    .toggle-switch.active::after { transform: translateX(24px); }
+    .save-badge {
+      background: var(--pleo-mint); color: var(--pleo-teal);
+      padding: 3px 10px; border-radius: 100px; font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pricing-section { padding: 60px 40px 100px; }
+
+    .plan-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px; max-width: 1100px; margin: 0 auto;
+    }
+    .plan-card {
+      border: 2px solid var(--pleo-border); border-radius: 20px;
+      padding: 40px; transition: all 0.3s; position: relative;
+      background: var(--pleo-white);
+    }
+    .plan-card:hover { border-color: var(--pleo-teal); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+    .plan-card.popular { border-color: var(--pleo-teal); background: var(--pleo-light-mint); }
+    .plan-card.popular::after {
+      content: 'Most popular'; position: absolute; top: -14px; left: 50%;
+      transform: translateX(-50%); background: var(--pleo-teal);
+      color: white; padding: 4px 16px; border-radius: 100px;
+      font-size: 12px; font-weight: 700;
+    }
+    .plan-icon { font-size: 32px; margin-bottom: 16px; }
+    .plan-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--pleo-teal); margin-bottom: 4px; }
+    .plan-card h3 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+    .plan-card .desc { font-size: 15px; color: var(--pleo-gray); margin-bottom: 24px; line-height: 1.6; }
+    .plan-card .price { font-size: 40px; font-weight: 700; margin-bottom: 4px; letter-spacing: -1px; }
+    .plan-card .price .currency { font-size: 22px; vertical-align: top; }
+    .plan-card .price .period { font-size: 15px; font-weight: 400; color: var(--pleo-gray); }
+    .plan-card .price-note { font-size: 13px; color: var(--pleo-gray); margin-bottom: 28px; }
+    .plan-divider { border: none; border-top: 1px solid var(--pleo-border); margin: 0 0 24px; }
+    .plan-features-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--pleo-gray); margin-bottom: 16px; }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .plan-features li { font-size: 14px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+    .plan-features li::before { content: '✓'; color: var(--pleo-teal); font-weight: 700; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .plan-card .btn { width: 100%; }
+
+    /* Comparison */
+    .comparison { padding: 80px 40px; background: var(--pleo-light-gray); }
+    .comparison h2 { text-align: center; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 48px; }
+    .comparison-table {
+      max-width: 1000px; margin: 0 auto;
+      border-collapse: collapse; width: 100%;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 16px 20px; text-align: left; font-size: 14px;
+      border-bottom: 1px solid var(--pleo-border);
+    }
+    .comparison-table th { font-weight: 700; background: var(--pleo-white); position: sticky; top: 72px; }
+    .comparison-table th:first-child { text-align: left; }
+    .comparison-table th:not(:first-child) { text-align: center; }
+    .comparison-table td:not(:first-child) { text-align: center; }
+    .comparison-table td:first-child { font-weight: 500; }
+    .check { color: var(--pleo-teal); font-weight: 700; }
+    .dash { color: var(--pleo-border); }
+
+    /* FAQ */
+    .faq { padding: 80px 40px; }
+    .faq h2 { text-align: center; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 48px; }
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--pleo-border); overflow: hidden;
+    }
+    .faq-q {
+      padding: 20px 0; font-size: 16px; font-weight: 600;
+      cursor: pointer; display: flex; justify-content: space-between;
+      align-items: center; gap: 16px;
+    }
+    .faq-q::after { content: '+'; font-size: 22px; font-weight: 400; color: var(--pleo-gray); transition: transform 0.3s; flex-shrink: 0; }
+    .faq-item.open .faq-q::after { content: '−'; }
+    .faq-a {
+      max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
+      font-size: 15px; color: var(--pleo-gray); line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+
+    .footer {
+      background: var(--pleo-dark); color: rgba(255,255,255,0.7);
+      padding: 32px 40px; text-align: center; font-size: 13px;
+    }
+
+    .identify-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+    }
+    .identify-modal-overlay.show { display: flex; }
+    .identify-modal {
+      background: var(--pleo-white); border-radius: 20px;
+      padding: 40px; max-width: 440px; width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .identify-modal h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .identify-modal p { font-size: 14px; color: var(--pleo-gray); margin-bottom: 24px; }
+    .identify-modal label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .identify-modal input {
+      width: 100%; padding: 12px 16px; border: 2px solid var(--pleo-border);
+      border-radius: 10px; font-size: 15px; font-family: var(--font-family);
+      transition: border-color 0.2s; outline: none; margin-bottom: 16px;
+    }
+    .identify-modal input:focus { border-color: var(--pleo-teal); }
+    .identify-modal .btn { width: 100%; margin-bottom: 8px; }
+    .identify-skip { text-align: center; }
+    .identify-skip button {
+      background: none; border: none; color: var(--pleo-gray);
+      cursor: pointer; font-size: 14px; font-family: var(--font-family);
+    }
+    .identify-skip button:hover { color: var(--pleo-dark); }
+    .identify-status {
+      position: fixed; bottom: 20px; left: 20px; z-index: 9998;
+      background: var(--pleo-dark); color: var(--pleo-white);
+      padding: 10px 18px; border-radius: 10px; font-size: 13px;
+      font-weight: 500; display: none; align-items: center; gap: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .identify-status.show { display: flex; }
+    .identify-status button {
+      background: rgba(255,255,255,0.15); border: none; color: white;
+      padding: 4px 12px; border-radius: 6px; font-size: 12px;
+      cursor: pointer; font-family: var(--font-family);
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .pricing-section { padding: 40px 20px 80px; }
+      .plan-grid { grid-template-columns: 1fr; }
+      .comparison { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">pleo<span>.</span></a>
+    <div class="nav-links">
+      <a href="features.html">Products</a>
+      <a href="pricing.html" class="active">Pricing</a>
+      <a href="features.html">Solutions</a>
+      <a href="#">Resources</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-ghost" onclick="openIdentifyModal()">Log in</button>
+      <a href="#" class="btn btn-primary" onclick="openIdentifyModal(); return false;">Get started</a>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <h1>Simple, transparent pricing</h1>
+    <p>Pick the plan that fits your team. Scale up anytime — no hidden fees.</p>
+    <div class="billing-toggle">
+      <span class="active" id="monthlyLabel">Monthly</span>
+      <div class="toggle-switch" id="billingToggle" onclick="toggleBilling()"></div>
+      <span id="annualLabel">Annual</span>
+      <span class="save-badge">Save 20%</span>
+    </div>
+  </section>
+
+  <section class="pricing-section">
+    <div class="plan-grid">
+      <!-- Starter -->
+      <div class="plan-card">
+        <div class="plan-icon">🚀</div>
+        <div class="plan-label">Starter</div>
+        <h3>Startups</h3>
+        <p class="desc">Spending done right, from day one. Perfect for small teams getting started.</p>
+        <div class="price"><span class="currency">€</span><span class="amount" data-monthly="0" data-annual="0">0</span> <span class="period">free forever</span></div>
+        <div class="price-note">Up to 3 team members</div>
+        <hr class="plan-divider">
+        <div class="plan-features-title">What's included</div>
+        <ul class="plan-features">
+          <li>3 virtual Mastercard cards</li>
+          <li>Receipt capture &amp; auto-matching</li>
+          <li>Basic spend analytics</li>
+          <li>Xero &amp; QuickBooks integration</li>
+          <li>Mobile app (iOS &amp; Android)</li>
+          <li>Email support</li>
+        </ul>
+        <button class="btn btn-outline" onclick="openIdentifyModal()">Get started free</button>
+      </div>
+
+      <!-- Essential -->
+      <div class="plan-card popular">
+        <div class="plan-icon">⚡</div>
+        <div class="plan-label">Essential</div>
+        <h3>Mid-size companies</h3>
+        <p class="desc">Consolidate spending data and close your books faster than ever.</p>
+        <div class="price"><span class="currency">€</span><span class="amount" data-monthly="49" data-annual="39">49</span> <span class="period">/user per month</span></div>
+        <div class="price-note">Billed <span class="billing-period-text">monthly</span></div>
+        <hr class="plan-divider">
+        <div class="plan-features-title">Everything in Starter, plus</div>
+        <ul class="plan-features">
+          <li>Unlimited users &amp; cards</li>
+          <li>Physical Mastercard cards</li>
+          <li>Custom approval workflows</li>
+          <li>Advanced spend analytics</li>
+          <li>All accounting integrations</li>
+          <li>Accounts payable</li>
+          <li>Reimbursements</li>
+          <li>Multi-entity support</li>
+          <li>Priority chat &amp; email support</li>
+        </ul>
+        <button class="btn btn-primary" onclick="openIdentifyModal()">Start free trial</button>
+      </div>
+
+      <!-- Advanced -->
+      <div class="plan-card">
+        <div class="plan-icon">🏢</div>
+        <div class="plan-label">Advanced</div>
+        <h3>Enterprise</h3>
+        <p class="desc">Stay on top of spend and compliance while empowering global teams.</p>
+        <div class="price">Custom</div>
+        <div class="price-note">Tailored to your organisation</div>
+        <hr class="plan-divider">
+        <div class="plan-features-title">Everything in Essential, plus</div>
+        <ul class="plan-features">
+          <li>Dedicated account manager</li>
+          <li>SSO (SAML 2.0) &amp; advanced security</li>
+          <li>Custom API integrations</li>
+          <li>Advanced compliance controls</li>
+          <li>Custom roles &amp; permissions</li>
+          <li>ERP integrations (SAP, Oracle)</li>
+          <li>SLA guarantee</li>
+          <li>24/7 global support</li>
+        </ul>
+        <button class="btn btn-outline" onclick="openIdentifyModal()">Contact sales</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="comparison">
+    <h2>Compare plans</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Starter</th>
+          <th>Essential</th>
+          <th>Advanced</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Virtual cards</td><td class="check">3</td><td class="check">Unlimited</td><td class="check">Unlimited</td></tr>
+        <tr><td>Physical cards</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Receipt capture</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Approval workflows</td><td class="dash">—</td><td class="check">✓</td><td class="check">Custom</td></tr>
+        <tr><td>Accounting integrations</td><td class="check">2</td><td class="check">All</td><td class="check">All + Custom</td></tr>
+        <tr><td>Accounts payable</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Reimbursements</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Analytics</td><td class="check">Basic</td><td class="check">Advanced</td><td class="check">Custom</td></tr>
+        <tr><td>Multi-entity</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>SSO</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+        <tr><td>API access</td><td class="dash">—</td><td class="check">Standard</td><td class="check">Full</td></tr>
+        <tr><td>Support</td><td>Email</td><td>Priority</td><td>24/7 + Dedicated</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Can I try Pleo before I commit?</div>
+        <div class="faq-a">Absolutely! Every paid plan comes with a free 21-day trial. No credit card required to get started.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I change my plan later?</div>
+        <div class="faq-a">Yes, you can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Are there any hidden fees?</div>
+        <div class="faq-a">No hidden fees. The price you see is the price you pay. Card transactions in your local currency have no additional fees.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What currencies are supported?</div>
+        <div class="faq-a">Pleo cards work with Mastercard's global network, so you can pay in virtually any currency. Foreign exchange fees may apply for non-local currencies.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How does the Freshdesk chat support work?</div>
+        <div class="faq-a">You can reach our support team anytime through the chat widget on this page. Essential plan users get priority response times, and Enterprise customers have 24/7 dedicated support.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Pleo Technologies A/S — Demo site for Amplitude AI Feedback testing. Not affiliated with Pleo.
+  </footer>
+
+  <!-- User Identify Modal -->
+  <div class="identify-modal-overlay" id="identifyModal">
+    <div class="identify-modal">
+      <h3>Welcome to Pleo</h3>
+      <p>Sign in to get started. This identifies you for a personalized experience.</p>
+      <label for="identifyEmail">Email address</label>
+      <input type="email" id="identifyEmail" placeholder="you@company.com">
+      <label for="identifyName">Full name (optional)</label>
+      <input type="text" id="identifyName" placeholder="Jane Smith">
+      <button class="btn btn-primary" onclick="identifyUser()">Continue</button>
+      <div class="identify-skip">
+        <button onclick="closeIdentifyModal()">Skip for now</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="identify-status" id="identifyStatus">
+    <span id="identifyStatusText"></span>
+    <button onclick="openIdentifyModal()">Change</button>
+  </div>
+
+  <script>
+    // Billing toggle
+    var isAnnual = false;
+    function toggleBilling() {
+      isAnnual = !isAnnual;
+      document.getElementById('billingToggle').classList.toggle('active', isAnnual);
+      document.getElementById('monthlyLabel').classList.toggle('active', !isAnnual);
+      document.getElementById('annualLabel').classList.toggle('active', isAnnual);
+      document.querySelectorAll('.amount').forEach(function(el) {
+        el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
+      });
+      document.querySelectorAll('.billing-period-text').forEach(function(el) {
+        el.textContent = isAnnual ? 'annually' : 'monthly';
+      });
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(function(q) {
+      q.addEventListener('click', function() {
+        this.parentElement.classList.toggle('open');
+      });
+    });
+
+    // Identify modal
+    function openIdentifyModal() {
+      document.getElementById('identifyModal').classList.add('show');
+    }
+    function closeIdentifyModal() {
+      document.getElementById('identifyModal').classList.remove('show');
+    }
+    function identifyUser() {
+      var email = document.getElementById('identifyEmail').value.trim();
+      var name = document.getElementById('identifyName').value.trim();
+      if (!email) { document.getElementById('identifyEmail').focus(); return; }
+
+      window.amplitude.setUserId(email);
+      var identifyObj = new window.amplitude.Identify();
+      identifyObj.set('email', email);
+      if (name) identifyObj.set('name', name);
+      window.amplitude.identify(identifyObj);
+      window.amplitude.track('User Signed In', { email: email, name: name || undefined });
+
+      closeIdentifyModal();
+      document.getElementById('identifyStatusText').textContent = 'Identified: ' + email;
+      document.getElementById('identifyStatus').classList.add('show');
+
+      try { localStorage.setItem('pleo_demo_user', JSON.stringify({ email: email, name: name })); } catch(e) {}
+    }
+
+    document.getElementById('identifyModal').addEventListener('click', function(e) {
+      if (e.target === this) closeIdentifyModal();
+    });
+
+    // Restore identification
+    (function() {
+      try {
+        var stored = JSON.parse(localStorage.getItem('pleo_demo_user'));
+        if (stored && stored.email) {
+          window.amplitude.setUserId(stored.email);
+          var identifyObj = new window.amplitude.Identify();
+          identifyObj.set('email', stored.email);
+          if (stored.name) identifyObj.set('name', stored.name);
+          window.amplitude.identify(identifyObj);
+          document.getElementById('identifyStatusText').textContent = 'Identified: ' + stored.email;
+          document.getElementById('identifyStatus').classList.add('show');
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+</body>
+</html>

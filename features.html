@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features - Pleo | Smart Spend Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Amplitude Browser SDK + Session Replay -->
+  <script src="https://cdn.amplitude.com/script/6a02da83cc930a6db40f27fe5731a42e.js"></script>
+  <script>
+    window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+    window.amplitude.init('6a02da83cc930a6db40f27fe5731a42e', {
+      fetchRemoteConfig: true,
+      autocapture: {
+        pageViews: true,
+        attribution: true,
+        sessions: true,
+        formInteractions: false,
+        fileDownloads: false,
+        elementInteractions: false,
+        frustrationInteractions: true,
+      }
+    });
+  </script>
+
+  <!-- Freshdesk Chat Widget -->
+  <script>
+    function initFreshdesk() {
+      window.fdWidget.init({
+        token: "01KKA206PWCVJZWKB5JKCQ21E5",
+        host: "https://amplitude.freshdesk.com",
+        widgetId: "01KKA2084G487APJ71V17JT6F3"
+      });
+    }
+    function initialize(i,t){var e;i.getElementById(t)?initFreshdesk():((e=i.createElement("script")).id=t,e.async=!0,e.src="https://amplitude.freshdesk.com/webchat/js/widget.js",e.onload=initFreshdesk,i.head.appendChild(e))}function initiateCall(){initialize(document,"Freshdesk-js-sdk")}window.addEventListener?window.addEventListener("load",initiateCall,!1):window.attachEvent("load",initiateCall,!1);
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pleo-dark: #0C2B32;
+      --pleo-teal: #0E6D5E;
+      --pleo-mint: #D4F5E9;
+      --pleo-light-mint: #EEFAF4;
+      --pleo-cream: #FDF8F4;
+      --pleo-white: #FFFFFF;
+      --pleo-gray: #6B7280;
+      --pleo-light-gray: #F3F4F6;
+      --pleo-border: #E5E7EB;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-family); color: var(--pleo-dark); background: var(--pleo-white); line-height: 1.6; }
+
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--pleo-border);
+      padding: 0 40px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 28px; font-weight: 700; color: var(--pleo-dark); text-decoration: none; letter-spacing: -1px; }
+    .nav-logo span { color: var(--pleo-teal); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { text-decoration: none; color: var(--pleo-dark); font-size: 15px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--pleo-teal); }
+    .nav-links a.active { color: var(--pleo-teal); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 10px 24px; border-radius: 8px; font-size: 15px;
+      font-weight: 600; text-decoration: none; transition: all 0.25s;
+      cursor: pointer; border: none; font-family: var(--font-family);
+    }
+    .btn-ghost { background: transparent; color: var(--pleo-dark); }
+    .btn-ghost:hover { background: var(--pleo-light-gray); }
+    .btn-primary { background: var(--pleo-dark); color: var(--pleo-white); }
+    .btn-primary:hover { background: #163E47; transform: translateY(-1px); }
+    .btn-teal { background: var(--pleo-teal); color: var(--pleo-white); }
+    .btn-teal:hover { background: #0A5A4D; transform: translateY(-1px); }
+    .btn-large { padding: 16px 36px; font-size: 17px; border-radius: 10px; }
+
+    .page-hero {
+      padding: 140px 40px 80px; text-align: center;
+      background: linear-gradient(180deg, var(--pleo-light-mint) 0%, var(--pleo-white) 100%);
+    }
+    .page-hero h1 {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 700;
+      line-height: 1.12; letter-spacing: -1.5px; max-width: 720px;
+      margin: 0 auto 20px;
+    }
+    .page-hero p { font-size: 18px; color: var(--pleo-gray); max-width: 540px; margin: 0 auto; line-height: 1.7; }
+
+    .section { padding: 80px 40px; }
+    .section:nth-child(even) { background: var(--pleo-light-gray); }
+
+    .feature-row {
+      max-width: 1060px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .feature-row.reverse { direction: rtl; }
+    .feature-row.reverse > * { direction: ltr; }
+    .feature-row h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .feature-row p { font-size: 16px; color: var(--pleo-gray); line-height: 1.7; margin-bottom: 20px; }
+    .feature-row ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .feature-row ul li { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; }
+    .feature-row ul li::before { content: '✓'; color: var(--pleo-teal); font-weight: 700; }
+    .feature-visual-box {
+      background: linear-gradient(135deg, var(--pleo-mint) 0%, #C8F0E0 100%);
+      border-radius: 20px; height: 360px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 80px; box-shadow: 0 8px 32px rgba(14,109,94,0.1);
+    }
+    .feature-visual-box.pink { background: linear-gradient(135deg, #FDE8E6 0%, #F8D3D0 100%); box-shadow: 0 8px 32px rgba(200,80,80,0.08); }
+    .feature-visual-box.yellow { background: linear-gradient(135deg, #FEF3C7 0%, #F5E6A3 100%); box-shadow: 0 8px 32px rgba(200,160,40,0.08); }
+    .feature-visual-box.blue { background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%); box-shadow: 0 8px 32px rgba(59,130,246,0.08); }
+
+    .cta-banner {
+      padding: 80px 40px; text-align: center;
+      background: var(--pleo-dark); color: var(--pleo-white);
+    }
+    .cta-banner h2 { font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; letter-spacing: -1px; margin-bottom: 16px; }
+    .cta-banner p { font-size: 17px; color: rgba(255,255,255,0.65); margin-bottom: 32px; }
+
+    .footer {
+      background: var(--pleo-dark); color: rgba(255,255,255,0.7);
+      padding: 32px 40px; text-align: center; font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .identify-status {
+      position: fixed; bottom: 20px; left: 20px; z-index: 9998;
+      background: var(--pleo-dark); color: var(--pleo-white);
+      padding: 10px 18px; border-radius: 10px; font-size: 13px;
+      font-weight: 500; display: none; align-items: center; gap: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .identify-status.show { display: flex; }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .feature-row, .feature-row.reverse { grid-template-columns: 1fr; direction: ltr; }
+      .section { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">pleo<span>.</span></a>
+    <div class="nav-links">
+      <a href="features.html" class="active">Products</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="features.html">Solutions</a>
+      <a href="#">Resources</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-ghost" onclick="window.location='index.html'">Log in</button>
+      <a href="pricing.html" class="btn btn-primary">Get started</a>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <h1>Everything you need to manage company spending</h1>
+    <p>From smart cards to automated expense reports — Pleo gives your finance team superpowers.</p>
+  </section>
+
+  <!-- Feature 1: Business Cards -->
+  <section class="section">
+    <div class="feature-row">
+      <div>
+        <h2>Smart company cards</h2>
+        <p>Give your team the autonomy to spend what they need, with built-in limits and real-time visibility for your finance team.</p>
+        <ul>
+          <li>Issue virtual or physical Mastercard cards instantly</li>
+          <li>Set individual spending limits per card</li>
+          <li>Freeze or cancel cards in one click</li>
+          <li>Vendor-specific cards for subscriptions</li>
+          <li>Real-time notifications on every transaction</li>
+        </ul>
+        <a href="pricing.html" class="btn btn-teal">Get your cards</a>
+      </div>
+      <div class="feature-visual-box">💳</div>
+    </div>
+  </section>
+
+  <!-- Feature 2: Expense Management -->
+  <section class="section">
+    <div class="feature-row reverse">
+      <div>
+        <h2>Effortless expense management</h2>
+        <p>No more spreadsheets, lost receipts, or month-end chaos. Pleo automates the entire expense workflow from purchase to reconciliation.</p>
+        <ul>
+          <li>Snap receipts with your phone — AI extracts the data</li>
+          <li>Auto-match receipts to card transactions</li>
+          <li>Customisable categories and tags</li>
+          <li>Automatic policy enforcement</li>
+          <li>Real-time expense dashboard</li>
+        </ul>
+        <a href="pricing.html" class="btn btn-teal">Simplify expenses</a>
+      </div>
+      <div class="feature-visual-box pink">🧾</div>
+    </div>
+  </section>
+
+  <!-- Feature 3: Accounts Payable -->
+  <section class="section">
+    <div class="feature-row">
+      <div>
+        <h2>Accounts payable, simplified</h2>
+        <p>Manage invoices, approvals, and vendor payments in one streamlined workflow. Close your books faster with less manual effort.</p>
+        <ul>
+          <li>Centralised invoice inbox</li>
+          <li>Multi-level approval workflows</li>
+          <li>Scheduled and batch payments</li>
+          <li>Full audit trail for compliance</li>
+          <li>Direct ERP sync</li>
+        </ul>
+        <a href="pricing.html" class="btn btn-teal">Automate AP</a>
+      </div>
+      <div class="feature-visual-box yellow">📄</div>
+    </div>
+  </section>
+
+  <!-- Feature 4: Reimbursements -->
+  <section class="section">
+    <div class="feature-row reverse">
+      <div>
+        <h2>Quick reimbursements</h2>
+        <p>Reimburse out-of-pocket expenses faster with an employee-friendly, mobile-first flow that your team will actually enjoy.</p>
+        <ul>
+          <li>Submit expenses from anywhere</li>
+          <li>Fast manager approval workflows</li>
+          <li>Direct-to-bank reimbursement</li>
+          <li>Multi-currency and per-diem support</li>
+          <li>Mileage tracking</li>
+        </ul>
+        <a href="pricing.html" class="btn btn-teal">Speed up payouts</a>
+      </div>
+      <div class="feature-visual-box blue">💸</div>
+    </div>
+  </section>
+
+  <!-- Feature 5: Analytics -->
+  <section class="section">
+    <div class="feature-row">
+      <div>
+        <h2>Real-time spend analytics</h2>
+        <p>Get full visibility into where every euro goes. Make smarter financial decisions with real-time dashboards and custom reports.</p>
+        <ul>
+          <li>Live spending dashboards</li>
+          <li>Budget vs. actual comparisons</li>
+          <li>Department and team breakdowns</li>
+          <li>Exportable reports</li>
+          <li>Anomaly detection alerts</li>
+        </ul>
+        <a href="pricing.html" class="btn btn-teal">See the data</a>
+      </div>
+      <div class="feature-visual-box">📊</div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <h2>Ready to take control of your spending?</h2>
+    <p>Start your free 21-day trial — no credit card required.</p>
+    <a href="pricing.html" class="btn btn-teal btn-large">Start free trial</a>
+  </section>
+
+  <footer class="footer">
+    Pleo Technologies A/S — Demo site for Amplitude AI Feedback testing. Not affiliated with Pleo.
+  </footer>
+
+  <div class="identify-status" id="identifyStatus">
+    <span id="identifyStatusText"></span>
+  </div>
+
+  <script>
+    (function() {
+      try {
+        var stored = JSON.parse(localStorage.getItem('pleo_demo_user'));
+        if (stored && stored.email) {
+          window.amplitude.setUserId(stored.email);
+          var identifyObj = new window.amplitude.Identify();
+          identifyObj.set('email', stored.email);
+          if (stored.name) identifyObj.set('name', stored.name);
+          window.amplitude.identify(identifyObj);
+          document.getElementById('identifyStatusText').textContent = 'Identified: ' + stored.email;
+          document.getElementById('identifyStatus').classList.add('show');
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+</body>
+</html>
