@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smarter spending for your business - Pleo</title>
+  <title>Smarter spending for your business - GGFinance</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏦</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -369,7 +369,7 @@
 
   <!-- Navigation -->
   <nav class="nav">
-    <a href="index.html" class="nav-logo">pleo<span>.</span></a>
+    <a href="index.html" class="nav-logo">GGFinance<span>.</span></a>
     <div class="nav-links">
       <a href="features.html" onclick="window.amplitude.track('Nav Menu Clicked', {button_name: 'Products'})">Products</a>
       <a href="pricing.html" onclick="window.amplitude.track('Nav Menu Clicked', {button_name: 'Pricing'})">Pricing</a>
@@ -510,7 +510,7 @@
     <div class="testimonial-grid">
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <blockquote>"Pleo has completely transformed how our team handles expenses. No more chasing receipts or filling out spreadsheets. It just works."</blockquote>
+        <blockquote>"GGFinance has completely transformed how our team handles expenses. No more chasing receipts or filling out spreadsheets. It just works."</blockquote>
         <div class="testimonial-author">
           <div class="testimonial-avatar">SH</div>
           <div>
@@ -532,7 +532,7 @@
       </div>
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <blockquote>"Setting up Pleo took minutes. Our employees love the freedom, and we love the control. Best decision we made this year."</blockquote>
+        <blockquote>"Setting up GGFinance took minutes. Our employees love the freedom, and we love the control. Best decision we made this year."</blockquote>
         <div class="testimonial-author">
           <div class="testimonial-avatar">EL</div>
           <div>
@@ -638,8 +638,8 @@
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="nav-logo">pleo<span>.</span></a>
-        <p>Smart spend management for businesses of every size across Europe.</p>
+        <a href="index.html" class="nav-logo">GGFinance<span>.</span></a>
+        <p>Smart spend management for businesses of every size.</p>
       </div>
       <div class="footer-col">
         <h4>Product</h4>
@@ -679,14 +679,14 @@
       </div>
     </div>
     <div class="footer-bottom">
-      Pleo Technologies A/S — Demo site for Amplitude AI Feedback testing. Not affiliated with Pleo.
+      GGFinance — Demo site for Amplitude AI Feedback testing.
     </div>
   </footer>
 
   <!-- User Identify Modal (for Amplitude AI Feedback user mapping) -->
   <div class="identify-modal-overlay" id="identifyModal">
     <div class="identify-modal">
-      <h3>Welcome to Pleo</h3>
+      <h3>Welcome to GGFinance</h3>
       <p>Sign in to get started. This identifies you for a personalized experience.</p>
       <label for="identifyEmail">Email address</label>
       <input type="email" id="identifyEmail" placeholder="you@company.com">
@@ -703,6 +703,7 @@
   <div class="identify-status" id="identifyStatus">
     <span id="identifyStatusText"></span>
     <button onclick="openIdentifyModal()">Change</button>
+    <button onclick="logoutUser()">Log out</button>
   </div>
 
   <script>
@@ -762,6 +763,14 @@
         }
       } catch(e) {}
     })();
+
+    function logoutUser() {
+      window.amplitude.track('User Signed Out');
+      window.amplitude.reset();
+      try { localStorage.removeItem('pleo_demo_user'); } catch(e) {}
+      document.getElementById('identifyStatus').classList.remove('show');
+      document.getElementById('identifyStatusText').textContent = '';
+    }
 
     // Close modal on overlay click
     document.getElementById('identifyModal').addEventListener('click', function(e) {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Features - Pleo | Smart Spend Management</title>
+  <title>Features - GGFinance | Smart Spend Management</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏦</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -142,6 +142,11 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     }
     .identify-status.show { display: flex; }
+    .identify-status button {
+      background: rgba(255,255,255,0.15); border: none; color: white;
+      padding: 4px 12px; border-radius: 6px; font-size: 12px;
+      cursor: pointer; font-family: var(--font-family);
+    }
 
     @media (max-width: 768px) {
       .nav { padding: 0 20px; }
@@ -154,7 +159,7 @@
 <body>
 
   <nav class="nav">
-    <a href="index.html" class="nav-logo">pleo<span>.</span></a>
+    <a href="index.html" class="nav-logo">GGFinance<span>.</span></a>
     <div class="nav-links">
       <a href="features.html" class="active" onclick="window.amplitude.track('Nav Menu Clicked', {button_name: 'Products'})">Products</a>
       <a href="pricing.html" onclick="window.amplitude.track('Nav Menu Clicked', {button_name: 'Pricing'})">Pricing</a>
@@ -169,7 +174,7 @@
 
   <section class="page-hero">
     <h1>Everything you need to manage company spending</h1>
-    <p>From smart cards to automated expense reports — Pleo gives your finance team superpowers.</p>
+    <p>From smart cards to automated expense reports — GGFinance gives your finance team superpowers.</p>
   </section>
 
   <!-- Feature 1: Business Cards -->
@@ -196,7 +201,7 @@
     <div class="feature-row reverse">
       <div>
         <h2>Effortless expense management</h2>
-        <p>No more spreadsheets, lost receipts, or month-end chaos. Pleo automates the entire expense workflow from purchase to reconciliation.</p>
+        <p>No more spreadsheets, lost receipts, or month-end chaos. GGFinance automates the entire expense workflow from purchase to reconciliation.</p>
         <ul>
           <li>Snap receipts with your phone — AI extracts the data</li>
           <li>Auto-match receipts to card transactions</li>
@@ -274,14 +279,23 @@
   </section>
 
   <footer class="footer">
-    Pleo Technologies A/S — Demo site for Amplitude AI Feedback testing. Not affiliated with Pleo.
+    GGFinance — Demo site for Amplitude AI Feedback testing.
   </footer>
 
   <div class="identify-status" id="identifyStatus">
     <span id="identifyStatusText"></span>
+    <button onclick="logoutUser()">Log out</button>
   </div>
 
   <script>
+    function logoutUser() {
+      window.amplitude.track('User Signed Out');
+      window.amplitude.reset();
+      try { localStorage.removeItem('pleo_demo_user'); } catch(e) {}
+      document.getElementById('identifyStatus').classList.remove('show');
+      document.getElementById('identifyStatusText').textContent = '';
+    }
+
     (function() {
       try {
         var stored = JSON.parse(localStorage.getItem('pleo_demo_user'));
