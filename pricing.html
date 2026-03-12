@@ -9,10 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Amplitude Browser SDK + Session Replay -->
+  <!-- Amplitude Browser SDK + Session Replay + Guides & Surveys -->
   <script src="https://cdn.amplitude.com/script/6a02da83cc930a6db40f27fe5731a42e.js"></script>
+  <script src="https://cdn.amplitude.com/script/6a02da83cc930a6db40f27fe5731a42e.engagement.js"></script>
   <script>
     window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+    window.amplitude.add(window.engagement.plugin());
     window.amplitude.init('6a02da83cc930a6db40f27fe5731a42e', {
       fetchRemoteConfig: true,
       autocapture: {
